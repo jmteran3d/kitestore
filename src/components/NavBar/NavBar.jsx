@@ -74,7 +74,7 @@ export const NavBar = () => {
                 >
                   <Avatar
                     size={"sm"}
-                    src={"https://avatars.dicebear.com/api/male/username.svg"}
+                    src={"./images/avatar.jpg"}
                   />
                 </MenuButton>
                 <MenuList alignItems={"center"}>
@@ -82,18 +82,18 @@ export const NavBar = () => {
                   <Center>
                     <Avatar
                       size={"2xl"}
-                      src={"https://avatars.dicebear.com/api/male/username.svg"}
+                      src={"./images/avatar.jpg"}
                     />
                   </Center>
                   <br />
                   <Center>
-                    <p>Username</p>
+                    <p>Jesús M. Terán D.</p>
                   </Center>
                   <br />
                   <MenuDivider />
-                  <MenuItem>Your Servers</MenuItem>
-                  <MenuItem>Account Settings</MenuItem>
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem>Servicios</MenuItem>
+                  <MenuItem>Configuración</MenuItem>
+                  <MenuItem>Cerrar sesión</MenuItem>
                 </MenuList>
               </Menu>
             </Stack>
