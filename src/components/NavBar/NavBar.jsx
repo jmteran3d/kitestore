@@ -13,35 +13,13 @@ import {
   useColorMode,
   Center,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { MoonIcon, SunIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { CartWidget } from "../CartWidget";
-
-//Fake data (mock)
-const FAKE_CATEGORIES = [
-  {
-    id: 1,
-    label: 'Tablas',
-  },
-  {
-    id: 2,
-    label: 'Kites + Barras',
-  },
-  {
-    id: 3,
-    label: 'Arneses',
-  },
-  {
-    id: 4,
-    label: 'Bolsos',
-  },
-  {
-    id: 5,
-    label: 'Accesorios',
-  }
-]
+import { useCategories } from "../../hooks";
 
 export const NavBar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { categories, loading } = useCategories();
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -49,15 +27,19 @@ export const NavBar = () => {
           <Box>KiteStore</Box>
           <Menu>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-              Tienda
+              Categorías
             </MenuButton>
-            <MenuList>
-             {FAKE_CATEGORIES.map((category) => {
-                return <MenuItem key={category.id}>{category.label}</MenuItem>;
-              })}
+            <MenuList overflowY={"scroll"} maxHeight={"400px"}>
+              {!loading
+                ? categories.map((category) => {
+                    return (
+                      <MenuItem key={category.slug}>{category.name}</MenuItem>
+                    );
+                  })
+                : null}
             </MenuList>
           </Menu>
-          
+
           <Flex alignItems={"center"}>
             <CartWidget />
             <Stack direction={"row"} spacing={7}>

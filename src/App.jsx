@@ -1,93 +1,22 @@
-import { useEffect, useState } from "react";
 import { Button, ChakraProvider, Flex, Input } from "@chakra-ui/react";
-import { ItemListContainer, Loader } from "./components";
+import { ItemListContainer, Loader, UserStatus } from "./components";
 import { MainLayout } from "./layout/MainLayout";
-import {
-  // addProduct,
-  // deleteProduct,
-  getProducts,
-  searchProduct,
-  // updateProduct,
-} from "./services";
+import { useProducts, useSearch } from "./hooks";
+import { withOnlineStatus } from "./hoc";
+
+const UserStatusWithHoc = withOnlineStatus(UserStatus);
 
 const App = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
-
-  useEffect(() => {
-    getProducts()
-      .then((res) => {
-        setProducts(res.data.products);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => setLoading(false));
-  }, []);
-
-  // const handleClickAdd = () => {
-  //   const newProduct = {
-  //     title: "Producto Coder",
-  //     description: "Producto creado para coder",
-  //     price: 10,
-  //   };
-
-  //   addProduct(newProduct).then((res) => {
-  //     console.log(res);
-  //   });
-  // };
-
-  // const handleClickUpdate = () => {
-  //   const newData = {
-  //     title: "Iphone 16 Pro",
-  //     description: "Nuevo Iphone Coder",
-  //     price: 1000,
-  //   };
-
-  //   updateProduct(1, newData).then((res) => {
-  //     console.log(res);
-  //   });
-  // };
-
-  // const handleClickDelete = () => {
-  //   deleteProduct(1).then((res) => {
-  //     console.log(res);
-  //   });
-  // };
-
-  const handleClickSearch = () => {
-    setLoading(true);
-    searchProduct(search)
-      .then((res) => {
-        setProducts(res.data.products);
-      })
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  };
-
-  const handleClickReset = () => {
-    setLoading(true);
-    getProducts()
-      .then((res) => {
-        setProducts(res.data.products);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+  const { products, loading } = useProducts();
+  const { handleClickSearch, handleClickReset, setSearch, productsSearch } =
+    useSearch();
 
   return (
     <ChakraProvider>
       <MainLayout>
-        {/* <Button onClick={handleClickAdd}>Agregar Item</Button>
-        <Button onClick={handleClickUpdate}>Update Item</Button>
-        <Button onClick={handleClickDelete}>Delete Item</Button> */}
+        <UserStatusWithHoc name="Jesus" lastName="Teran" />
 
-        <Flex w='50%'>
+        {/* <Flex w="50%">
           <Input
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Buscar un producto"
@@ -96,7 +25,13 @@ const App = () => {
           <Button onClick={handleClickReset}>Reset</Button>
         </Flex>
 
-        {loading ? <Loader /> : <ItemListContainer products={products} />}
+        {loading ? (
+          <Loader />
+        ) : (
+          <ItemListContainer
+            products={productsSearch.length > 0 ? productsSearch : products}
+          />
+        )} */}
       </MainLayout>
     </ChakraProvider>
   );
