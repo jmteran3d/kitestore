@@ -16,6 +16,7 @@ import {
 import { MoonIcon, SunIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { CartWidget } from "../CartWidget";
 import { useCategories } from "../../hooks";
+import { Link } from "react-router-dom";
 
 export const NavBar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -24,7 +25,7 @@ export const NavBar = () => {
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Box>KiteStore</Box>
+          <Box><Link to={'/'}>KiteStore</Link></Box>
           <Menu>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
               Categorías
@@ -33,7 +34,10 @@ export const NavBar = () => {
               {!loading
                 ? categories.map((category) => {
                     return (
-                      <MenuItem key={category.slug}>{category.name}</MenuItem>
+                      <MenuItem key={category.slug}>
+                        <Link to={`/category/${category.slug}`}>
+                        {category.name}</Link>
+                      </MenuItem>
                     );
                   })
                 : null}
@@ -55,18 +59,12 @@ export const NavBar = () => {
                   cursor={"pointer"}
                   minW={0}
                 >
-                  <Avatar
-                    size={"sm"}
-                    src={"./images/avatar.jpg"}
-                  />
+                  <Avatar size={"sm"} src={"./images/avatar.jpg"} />
                 </MenuButton>
                 <MenuList alignItems={"center"}>
                   <br />
                   <Center>
-                    <Avatar
-                      size={"2xl"}
-                      src={"./images/avatar.jpg"}
-                    />
+                    <Avatar size={"2xl"} src={"./images/avatar.jpg"} />
                   </Center>
                   <br />
                   <Center>

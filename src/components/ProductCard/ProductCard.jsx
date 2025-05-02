@@ -11,9 +11,12 @@ import {
   Icon,
   chakra,
   Tooltip,
+  Button,
 } from "@chakra-ui/react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
+
 
 function Rating({ rating }) {
   return (
@@ -37,6 +40,8 @@ function Rating({ rating }) {
 }
 
 export function ProductCard({ product }) {
+
+  const navigate = useNavigate ()
   return (
     <Flex p={4} w="full" alignItems="center" justifyContent="center">
       <Box
@@ -108,6 +113,7 @@ export function ProductCard({ product }) {
             {product.price.toFixed(2)}
           </Box>
         </Box>
+        <Button margin={'10px'} onClick={() => navigate (`/item/${product.id}`)} >Detalles</Button>
       </Box>
     </Flex>
   );
