@@ -1,13 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Button, Flex, Text } from "@chakra-ui/react";
+import { CartContext } from "../../context";
 
 export const Counter = () => {
+  const {cartState, setCartState} = useContext(CartContext)
+
   const [count, setCount] = useState(0); //Valor inicial de 0 (se le pasa dentro del useState)
 
   const handleAdd = () => {
+    setCartState(cartState + 1); 
     setCount(count + 1);
   };
   const handleRemove = () => {
+    setCartState(cartState - 1); 
     setCount(count - 1);
   };
 
