@@ -1,20 +1,30 @@
 import { useState, useEffect, useContext } from "react";
 import { Button, Flex, Text } from "@chakra-ui/react";
-import { CartContext } from "../../context";
+import { useCounterStore } from "../../store/useCounterStore";
+/* import { CartContext } from "../../context"; */
+
 
 export const Counter = () => {
-  const {cartState, setCartState} = useContext(CartContext)
+  /* const {cartState, setCartState} = useContext(CartContext) */
+
+  //Store Zustand
+  const addProduct = useCounterStore((state) => state.addProduct);
+  const removeProduct = useCounterStore((state) => state.removeProduct);
+
+  /* const cartState = useCounterStore(state => state.cartState); */
 
   const [count, setCount] = useState(0); //Valor inicial de 0 (se le pasa dentro del useState)
 
-  const handleAdd = () => {
-    setCartState(cartState + 1); 
+   const handleAdd = () => {
+    addProduct();
     setCount(count + 1);
   };
+
   const handleRemove = () => {
-    setCartState(cartState - 1); 
+    removeProduct();
     setCount(count - 1);
   };
+
 
   useEffect(() => {
     console.log("Cambio el contador");

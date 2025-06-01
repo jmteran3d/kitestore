@@ -1,14 +1,14 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes";
-import { CartProvider } from "./context";
+/* import { CartProvider } from "./context"; */
 
 const App = () => {
   return (
     <ChakraProvider>
-      <CartProvider>
+      {/* <CartProvider> */}
         <RouterProvider router={router}/>
-      </CartProvider>
+      {/* </CartProvider> */}
     </ChakraProvider>
   );
 };
