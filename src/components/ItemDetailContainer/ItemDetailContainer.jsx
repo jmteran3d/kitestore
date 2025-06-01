@@ -15,11 +15,9 @@ import {
   List,
   ListItem,
 } from "@chakra-ui/react";
-import { MdLocalShipping } from "react-icons/md";
 import { Counter } from "../Counter";
 
 export const ItemDetailContainer = ({ product }) => {
-  console.log(product);
   return (
     <Container maxW={"7xl"}>
       <SimpleGrid
@@ -31,9 +29,7 @@ export const ItemDetailContainer = ({ product }) => {
           <Image
             rounded={"md"}
             alt={"product image"}
-            src={
-              product.images[0]
-            }
+            src={product.images[0]}
             fit={"cover"}
             align={"center"}
             w={"100%"}
@@ -104,24 +100,7 @@ export const ItemDetailContainer = ({ product }) => {
             </Box>
           </Stack>
 
-          {/* <Button
-            rounded={"none"}
-            w={"full"}
-            mt={8}
-            size={"lg"}
-            py={"7"}
-            bg={useColorModeValue("gray.900", "gray.50")}
-            color={useColorModeValue("white", "gray.900")}
-            textTransform={"uppercase"}
-            _hover={{
-              transform: "translateY(2px)",
-              boxShadow: "lg",
-            }}
-          >
-            Add to cart
-          </Button> */}
-
-          <Counter />
+          <Counter product={product} />
         </Stack>
       </SimpleGrid>
     </Container>

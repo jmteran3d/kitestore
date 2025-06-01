@@ -6,7 +6,7 @@ export const MainLayout = () => {
   return (
     <>
       <NavBar />
-      <Box w={"100vw"}>
+      <Box w={"100%"}>
         <Outlet />
       </Box>
     </>
