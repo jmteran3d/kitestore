@@ -1,14 +1,11 @@
 import { Flex } from "@chakra-ui/react";
 import { FaCartShopping } from "react-icons/fa6";
-import { useCounterStore } from "../../store/useCounterStore";
-/* import { useContext } from "react"; */
-/* import { CartContext } from "../../context"; */
+import { useProductsStore } from "../../store/useProductsStore";
+import { useNavigate } from "react-router-dom";
 
 export const CartWidget = () => {
-
-  const cartState = useCounterStore(state => state.cartState);
-
-  /* const {cartState} = useContext(CartContext); */
+  const totalItems = useProductsStore(state => state.getTotalItems());
+  const navigate = useNavigate();
 
   return (
     <Flex
@@ -17,9 +14,10 @@ export const CartWidget = () => {
       marginRight={"20px"}
       justifyContent={"space-between"}
       width={"50px"}
+      onClick={() => navigate('/cart')}
     >
       <FaCartShopping />
-      <div>{cartState}</div>
+      <div>{totalItems}</div>
     </Flex>
   );
 };

@@ -5,9 +5,9 @@ const initialState = {
 };
 
 export const useProductsStore = create((set) => ({
-    ...initialState,
+  ...initialState,
 
-    addProductToCart: (product) =>
+  addProductToCart: (product) =>
     set((state) => {
       const existingProduct = state.cart.find((item) => item.id === product.id);
 
@@ -28,4 +28,44 @@ export const useProductsStore = create((set) => ({
       };
     }),
 
+  removeProductFromCart: (productId) =>
+    set((state) => {
+      const existingProduct = state.cart.filter(
+        (item) => item.id === productId
+      );
+
+      if (existingProduct[0].quantity === 1) {
+        return {
+          cart: state.cart.filter((item) => item.id !== productId),
+        };
+      }
+
+      return {
+        cart: state.cart.map((item) =>
+          item.id === productId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        ),
+      };
+    }),
+
+  deleteProductFromCart: (productId) =>
+    set((state) => {
+      return {
+        cart: state.cart.filter((item) => item.id !== productId),
+      };
+    }),
+
+  getTotalItems: () => {
+    const state = useProductsStore.getState();
+    return state.cart.reduce((total, item) => total + item.quantity, 0);
+  },
+
+  getTotalPrice: () => {
+    const state = useProductsStore.getState();
+    return state.cart.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
+  },
 }));
