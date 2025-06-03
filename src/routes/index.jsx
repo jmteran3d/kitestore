@@ -1,11 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Cart, Category, Home, Item } from "../pages";
 import { MainLayout } from "../layout/MainLayout";
+import { Cart, Category, Home, Item, Login, Signup } from "../pages";
+import { ProtectedRoute } from "../components";
 
 const routes = [
   {
     path: "/",
-    element: <MainLayout />,
+    element: (
+      <ProtectedRoute>
+        <MainLayout />,Add commentMore actions
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "/",
@@ -24,6 +29,14 @@ const routes = [
         element: <Cart />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
   },
 ];
 
