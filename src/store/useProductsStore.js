@@ -21,8 +21,6 @@ export const useProductsStore = create((set) => ({
         };
       }
 
-      console.log(product);
-
       return {
         cart: [...state.cart, { ...product, quantity: 1 }],
       };

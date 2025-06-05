@@ -11,18 +11,22 @@ import {
   Spacer,
   Divider,
   Image,
+  Button,
 } from "@chakra-ui/react";
 import { MinusIcon, AddIcon, DeleteIcon } from "@chakra-ui/icons";
 import { useCustomProductsStore, useTitle } from "../hooks";
+import { useNavigate } from "react-router-dom";
 
 export const Cart = () => {
-  useTitle({title: 'Carrito'})
+  useTitle({ title: "Carrito" });
   const { cartState, addItem, removeItem, deleteProductFromCart, total } =
     useCustomProductsStore();
 
   const handleDeleteItem = (itemId) => {
     deleteProductFromCart(itemId);
   };
+
+  const navigate = useNavigate();
 
   return (
     <Box p={6} maxW="800px" mx="auto" h={"90vh"}>
@@ -103,6 +107,9 @@ export const Cart = () => {
           </Flex>
         </VStack>
       )}
+      <Button marginTop={"20px"} variant={"outline"} colorScheme="green" onClick={() => navigate("/checkout")}>
+        Finalizar compra
+      </Button>
     </Box>
   );
 };

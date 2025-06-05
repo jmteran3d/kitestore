@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { MainLayout } from "../layout/MainLayout";
-import { Cart, Category, Home, Item, Login, Signup } from "../pages";
+import { Cart, Category, Checkout, Home, Item, Login, Signup } from "../pages";
 import { ProtectedRoute } from "../components";
 
 const routes = [
@@ -27,6 +27,10 @@ const routes = [
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
       },
     ],
   },
