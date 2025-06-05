@@ -19,16 +19,6 @@ export const Home = () => {
     console.log("Scrolling...");
   };
 
-  //useEffect(() => {
-    //document.addEventListener("scroll", handleScroll);
-
-    //funcion clean up
-    //return () => {
-      //console.log("se destruye");
-      //document.addEventListener("scroll", handleScroll);
-    //};
-  //}, []);
-
   return (
     <>
       <Flex w="50%">
