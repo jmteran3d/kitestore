@@ -1,16 +1,17 @@
 import { Button, Flex, Input } from "@chakra-ui/react";
-import React, { useEffect } from "react";
 import { ItemListContainer, Loader } from "../components";
-import { useProducts, useSearch } from "../hooks";
+import { useProducts, useSearch, useTitle } from "../hooks";
 
 export const Home = () => {
   const { products, loading } = useProducts();
   const { handleClickSearch, handleClickReset, setSearch, productsSearch } =
     useSearch();
+    useTitle({ title: "Inicio" });
 
   const handleInputChange = (e) => {
     console.log(e.target.value);
   };
+
   const handleInputClick = () => {
     console.log("Input clickeado");
   };
@@ -18,15 +19,15 @@ export const Home = () => {
     console.log("Scrolling...");
   };
 
-  useEffect(() => {
-    document.addEventListener("scroll", handleScroll);
+  //useEffect(() => {
+    //document.addEventListener("scroll", handleScroll);
 
     //funcion clean up
-    return () => {
-      console.log("se destruye");
-      document.addEventListener("scroll", handleScroll);
-    };
-  }, []);
+    //return () => {
+      //console.log("se destruye");
+      //document.addEventListener("scroll", handleScroll);
+    //};
+  //}, []);
 
   return (
     <>

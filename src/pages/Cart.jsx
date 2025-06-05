@@ -13,9 +13,10 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { MinusIcon, AddIcon, DeleteIcon } from "@chakra-ui/icons";
-import { useCustomProductsStore } from "../hooks";
+import { useCustomProductsStore, useTitle } from "../hooks";
 
 export const Cart = () => {
+  useTitle({title: 'Carrito'})
   const { cartState, addItem, removeItem, deleteProductFromCart, total } =
     useCustomProductsStore();
 

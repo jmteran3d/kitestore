@@ -8,7 +8,7 @@ const routes = [
     path: "/",
     element: (
       <ProtectedRoute>
-        <MainLayout />,Add commentMore actions
+        <MainLayout />
       </ProtectedRoute>
     ),
     children: [

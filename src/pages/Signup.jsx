@@ -98,7 +98,7 @@ export const Signup = () => {
             />
           </FormControl>
 
-          <Button type="submit" colorScheme="purple">
+          <Button type="submit" colorScheme="green">
             Registrarse
           </Button>
         </VStack>
